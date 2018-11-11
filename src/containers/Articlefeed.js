@@ -1,6 +1,6 @@
 // React imports
 import React, { Component } from 'react'
-import Article from './components/Article'
+import Article from '../components/Article'
 
 // Redux imports
 import { connect } from 'react-redux'
@@ -14,6 +14,7 @@ class Articlefeed extends Component {
   }
 
   render() {
+    console.log(this.props.articles)
 
     const allArticles = this.props.articles.map((article) => {
       return (
@@ -23,6 +24,7 @@ class Articlefeed extends Component {
             description={article.article.description}
             id={article.article.id}
           />
+        <p>hello</p>
         </div>
       )
     })
@@ -40,4 +42,4 @@ const mapStateToProps = state => ({
   articles: state.articles.items
 })
 
-export default Articlefeed
+export default connect (mapStateToProps, { fetchArticles })(Articlefeed)
