@@ -1,18 +1,17 @@
 import { FETCH_ARTICLES } from './types'
 
-const initialState = {
-  items: [],
-  item: {}
-}
-
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case FETCH_ARTICLES:
-      return {
-        ...state,
-        items: action.articles
-      }
-    default:
-      return state
-  }
+export const fetchArticles = () => dispatch => {
+  fetch("http://localhost:3000/api/v1/articles", {
+    headers: {
+      "Content-Type": 'application/json',
+      'Accept': 'application/json',
+    }
+  })
+  .then(response => response.json())
+  .then(articles =>
+    dispatch({
+      type: FETCH_ARTICLES,
+      articles
+    })
+  )
 }
