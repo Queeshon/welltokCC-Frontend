@@ -20,11 +20,8 @@ class Articlefeed extends Component {
       return (
         <div key={article.article.id}>
           <Article
-            title={article.article.title}
-            description={article.article.description}
-            id={article.article.id}
+            info={article.article}
           />
-        <p>hello</p>
         </div>
       )
     })
