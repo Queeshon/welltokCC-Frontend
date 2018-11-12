@@ -12,6 +12,7 @@ class Articlefeed extends Component {
         <div key={article.article.id}>
           <Article
             info={article.article}
+            deleteArticle={this.props.deleteArticle}
           />
         </div>
       )

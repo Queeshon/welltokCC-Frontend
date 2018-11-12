@@ -2,7 +2,9 @@ import { FETCH_ARTICLES, CREATE_ARTICLE, UPDATE_ARTICLE, DELETE_ARTICLE } from '
 
 const initialState = {
   items: [],
-  item: {}
+  item: {},
+  updateItem: {},
+  deleteItem: ''
 }
 
 export default function(state = initialState, action) {
@@ -20,11 +22,12 @@ export default function(state = initialState, action) {
     case UPDATE_ARTICLES:
       return {
         ...state,
-        item: action.article
+        updateItem: action.article
       }
     case DELETE_ARTICLES:
       return {
-        ...state
+        ...state,
+        deleteItem: action.article
       }
     default:
       return state

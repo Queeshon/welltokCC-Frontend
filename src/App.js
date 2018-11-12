@@ -23,13 +23,40 @@ class App extends Component {
     callback('/articlefeed')
   }
 
+  updateArticle = (articleData, callback) => {
+    this.props.updateArticle(articleData)
+    callback("/articlefeed")
+  }
+
+  deleteArticle = (callback) => {
+    this.props.deleteArticle()
+    callback('/articlefeed')
+  }
+
   render() {
     return (
       <Router>
         <div>
           <Switch>
-            <Route exact path='/articlefeed' render={(props) => <Articlefeed articles={this.props.articles} {...props}/>} />
-            <Route exact path='/articleform' render={(props) => <Articleform onSubmit={this.createArticle} {...props}/>} />
+            <Route exact path='/articlefeed' render={(props) =>
+                <Articlefeed
+                  articles={this.props.articles}
+                  deleteArticle={this.props.deleteArticle}
+                  {...props}
+                />}
+              />
+            <Route exact path='/articleform' render={(props) =>
+                <Articleform
+                  onSubmit={this.createArticle}
+                  {...props}
+                />}
+            />
+          <Route exact path='/updateform' render={(props) =>
+                <Updateform
+                  onSubmit={this.props.updateArticle}
+                  {...props}
+                />}
+            />
           </Switch>
         </div>
       </Router>
@@ -38,8 +65,10 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  articles: state.articles.items
-  article: state.article.item
+  articles: state.articles.items,
+  article: state.article.item,
+  updateArticle: state.article.updateItem,
+  deleteArticle: state.article.deleteArticle
 })
 
 export default connect (mapStateToProps, { fetchArticles, createArticle, updateArticle, deleteArticle })(App)
