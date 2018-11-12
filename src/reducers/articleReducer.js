@@ -1,4 +1,4 @@
-import { FETCH_ARTICLES } from '../actions/types'
+import { FETCH_ARTICLES, CREATE_ARTICLE, UPDATE_ARTICLE, DELETE_ARTICLE } from '../actions/types'
 
 const initialState = {
   items: [],
@@ -11,6 +11,20 @@ export default function(state = initialState, action) {
       return {
         ...state,
         items: action.articles
+      }
+    case CREATE_ARTICLES:
+      return {
+        ...state,
+        item: action.article
+      }
+    case UPDATE_ARTICLES:
+      return {
+        ...state,
+        item: action.article
+      }
+    case DELETE_ARTICLES:
+      return {
+        ...state
       }
     default:
       return state
